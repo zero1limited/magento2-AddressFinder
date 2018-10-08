@@ -1,0 +1,39 @@
+{
+  "name": "zero1/module-address-finder",
+  "description": "Post code lookup integration",
+  "homepage": "",
+  "authors": [
+    {
+      "name": "Zero1",
+      "email": "support@zero1.co.uk",
+      "homepage": "http://www.zero1.co.uk/",
+      "role": "Developer"
+    }
+  ],
+  "require": {},
+  "keywords": [
+    "zero1",
+    "magento 2",
+    "magento2",
+    "magento 2 extension",
+    "Post code lookup",
+    "PCA",
+    "pca"
+  ],
+  "support": {
+    "email": "support@zero1.co.uk"
+  },
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "commercial"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Zero1\\AddressFinder\\": ""
+    }
+  }
+}

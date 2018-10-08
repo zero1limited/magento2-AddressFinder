@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="Zero1_AddressFinder" type="Zero1\AddressFinder\Plugin\MagentoCheckoutBlockCheckoutLayoutProvider" sortOrder="1" />
+    </type>
+
+    <preference for="Zero1\AddressFinder\Api\AddressLookupInterface" type="Zero1\AddressFinder\Model\AddressLookup" />
+</config>
