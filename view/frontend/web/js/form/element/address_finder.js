@@ -118,8 +118,8 @@ define([
                     });
                     self.setLookupStateLookedUpSuccessfully();
                 }else{
-                    this.lookupError(response.message);
-                    this.setLookupStateLookedUpError();
+                    self.lookupError(response.message);
+                    self.setLookupStateLookedUpError();
                 }
             };
 
@@ -146,8 +146,8 @@ define([
 
                     self.toggleFieldVisibility(true);
                 }else{
-                    this.lookupError(response.content);
-                    this.setLookupStateLookedUpError();
+                    self.lookupError(response.content);
+                    self.setLookupStateLookedUpError();
                 }
             };
             return this;
