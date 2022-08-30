@@ -20,12 +20,16 @@ class AddressLookup implements AddressLookupInterface
 
     /** @var \Zero1\AddressFinder\Helper\Config */
     protected $config;
+       
+    protected $session;
 
     public function __construct(
+        \Magento\Checkout\Model\Session $session,
         \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
         \Magento\Quote\Model\QuoteIdMaskFactory $maskedQuoteIdFactory,
         \Zero1\AddressFinder\Helper\Config $config
     ){
+        $this->session = $session;
         $this->quoteRepository = $quoteRepository;
         $this->maskedQuoteIdFactory = $maskedQuoteIdFactory;
         $this->config = $config;
@@ -40,13 +44,7 @@ class AddressLookup implements AddressLookupInterface
     {
         $result = new AddressSummaryResults();
 
-        try{
-            if($cartId){
-                $quoteIdMask = $this->maskedQuoteIdFactory->create()->load($cartId, 'masked_id');
-                /** @var \Magento\Quote\Model\Quote $quote */
-                $quote = $this->quoteRepository->getActive($quoteIdMask->getQuoteId());
-            }
-        }catch(\Exception $e){
+        if(count($this->session->getQuote()->getAllItems()) == 0){
             $result->setResult(false)
                 ->setMessage('Invalid cart id');
             return $result;
@@ -71,13 +69,7 @@ class AddressLookup implements AddressLookupInterface
     {
         $result = new AddressResult();
 
-        try{
-            if($cartId){
-                $quoteIdMask = $this->maskedQuoteIdFactory->create()->load($cartId, 'masked_id');
-                /** @var \Magento\Quote\Model\Quote $quote */
-                $quote = $this->quoteRepository->getActive($quoteIdMask->getQuoteId());
-            }
-        }catch(\Exception $e){
+        if(count($this->session->getQuote()->getAllItems()) == 0){
             $result->setResult(false)
                 ->setMessage('Invalid cart id');
             return $result;
