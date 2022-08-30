@@ -34,7 +34,7 @@ define([
                 urlBuilder.createUrl(
                     '/address-lookup/:cartId/id/:Id',
                     {
-                        cartId: quote.getQuoteId(),
+                        cartId: 'mine',
                         Id: id
                     }
                 ),
