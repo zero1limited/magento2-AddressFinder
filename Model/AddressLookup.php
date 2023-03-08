@@ -40,7 +40,7 @@ class AddressLookup implements AddressLookupInterface
      * @param $postcode string
      * @return \Zero1\AddressFinder\Api\Data\AddressSummaryResultsInterface
      */
-    public function getAddresses($cartId = null, $postcode)
+    public function getAddresses($postcode, $cartId = null)
     {
         $result = new AddressSummaryResults();
 
@@ -65,7 +65,7 @@ class AddressLookup implements AddressLookupInterface
      * @param $addressId string
      * @return \Zero1\AddressFinder\Api\Data\AddressResultInterface
      */
-    public function getAddress($cartId = null, $addressId)
+    public function getAddress($addressId, $cartId = null)
     {
         $result = new AddressResult();
 
