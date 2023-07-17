@@ -20,7 +20,7 @@ class AddressLookup implements AddressLookupInterface
 
     /** @var \Zero1\AddressFinder\Helper\Config */
     protected $config;
-       
+
     protected $session;
 
     public function __construct(
@@ -40,7 +40,7 @@ class AddressLookup implements AddressLookupInterface
      * @param $postcode string
      * @return \Zero1\AddressFinder\Api\Data\AddressSummaryResultsInterface
      */
-    public function getAddresses($postcode, $cartId = null)
+    public function getAddresses($cartId, $postcode)
     {
         $result = new AddressSummaryResults();
 
@@ -65,7 +65,7 @@ class AddressLookup implements AddressLookupInterface
      * @param $addressId string
      * @return \Zero1\AddressFinder\Api\Data\AddressResultInterface
      */
-    public function getAddress($addressId, $cartId = null)
+    public function getAddress($cartId, $addressId)
     {
         $result = new AddressResult();
 

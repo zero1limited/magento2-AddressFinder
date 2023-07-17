@@ -17,7 +17,7 @@ define([
                 urlBuilder.createUrl(
                     '/address-lookup/:cartId/postcode/:postCode',
                     {
-                        cartId: quote.getQuoteId(),
+                        cartId: 'mine',
                         postCode: postcode
                     }
                 ),
@@ -34,7 +34,7 @@ define([
                 urlBuilder.createUrl(
                     '/address-lookup/:cartId/id/:Id',
                     {
-                        cartId: 'mine',
+                        cartId: quote.getQuoteId(),
                         Id: id
                     }
                 ),

@@ -66,15 +66,21 @@ define([
             this._super();
             var self = this;
 
-            registry.get(self.parentName).elems.subscribe(function(elements){
-                //console.log('current value: %s', self.value());
-                var data = checkoutData.getShippingAddressFromData();
-                if(data && data.postcode && data.city){
-                    self.toggleFieldVisibility(true);
-                }else{
-                    self.toggleFieldVisibility(false);
-                }
-            });
+            try {
+                registry.get(self.parentName).elems.subscribe(function (elements) {
+                    // alert('current value: %s', self.value());
+                    var data = checkoutData.getShippingAddressFromData();
+                    if (data && data.postcode && data.city) {
+                        self.toggleFieldVisibility(true);
+                    } else {
+                        self.toggleFieldVisibility(false);
+                    }
+                });
+            }
+            catch(error) {
+                // do nothing, show all address fields
+                // self.toggleFieldVisibility(true);
+            }
 
             this.currentLookupState = ko.observable(self.state_Ready);
             this.lookupStateIsReady = ko.pureComputed(function(){ return self.currentLookupState() == self.state_Ready; });
