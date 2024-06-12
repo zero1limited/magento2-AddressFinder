@@ -1,6 +1,8 @@
 <?php
 namespace Zero1\AddressFinder\Plugin;
 
+use Magento\Framework\Stdlib\ArrayManager;
+
 class MagentoCheckoutBlockCheckoutLayoutProvider
 {
     protected $fieldsToHide = [
@@ -24,10 +26,15 @@ class MagentoCheckoutBlockCheckoutLayoutProvider
     /** @var \Zero1\AddressFinder\Helper\Config */
     protected $config;
 
+    /** @var ArrayManager */
+    protected $arrayManager;
+
     public function __construct(
-        \Zero1\AddressFinder\Helper\Config $config
+        \Zero1\AddressFinder\Helper\Config $config,
+        ArrayManager $arrayManager
     ){
         $this->config = $config;
+        $this->arrayManager = $arrayManager;
     }
 
     /**
@@ -54,20 +61,24 @@ class MagentoCheckoutBlockCheckoutLayoutProvider
                 }
             }
         }
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']['children']['postcode'] = \Zend\Stdlib\ArrayUtils::merge($jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']['children']['postcode'], [
-            'visible' => 1,
-            'component' => 'Zero1_AddressFinder/js/form/element/address_finder',
-            'template' => 'Zero1_AddressFinder/form/element/address_finder',
-            'sortOrder' => 500,
-            'target_fields' => [
-                'region_id_input',
-                'country_id',
-                'street',
-                'city',
-            ],
-        ]);
+        
+        $jsLayout = $this->arrayManager->merge(
+            'components/checkout/children/steps/children/shipping-step/children/shippingAddress/children/shipping-address-fieldset/children/postcode', 
+            $jsLayout,
+            [
+                'visible' => 1,
+                'component' => 'Zero1_AddressFinder/js/form/element/address_finder',
+                'template' => 'Zero1_AddressFinder/form/element/address_finder',
+                'sortOrder' => 500,
+                'target_fields' => [
+                    'region_id_input',
+                    'country_id',
+                    'street',
+                    'city',
+                ],
+            ]
+        );
+
         return $jsLayout;
     }
 }

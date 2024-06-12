@@ -10,7 +10,9 @@
       "role": "Developer"
     }
   ],
-  "require": {},
+  "require": {
+    "magento/framework": "^103.0.6"
+  },
   "keywords": [
     "zero1",
     "magento 2",
@@ -24,7 +26,6 @@
     "email": "support@zero1.co.uk"
   },
   "type": "magento2-module",
-  "version": "1.0.3",
   "license": [
     "commercial"
   ],
